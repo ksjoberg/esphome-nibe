@@ -125,6 +125,15 @@ void NibeGw::loop()
           if (debug)
             debug(4, "\nFrame start found\n");
 #endif
+        } else {
+          //TEMP
+          index++;
+          if (index % 100 == 0)
+          {
+            RS485->write_byte(0xC5);
+            RS485->flush();
+          }
+          //ENDTEMP
         }
       }
       break;
