@@ -1,2 +1,12 @@
 external_components:
   - source: ../components
+# Virtual RMU so CI also builds the climate code path
+climate:
+  - platform: nibegw
+    name: s3
+    system: 3
+    sensor: current_temperature_s3
+sensor:
+  - platform: homeassistant
+    id: current_temperature_s3
+    entity_id: sensor.current_temperature_s3

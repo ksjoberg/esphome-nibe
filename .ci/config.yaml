@@ -7,7 +7,8 @@ esp32:
 
 # No API if you are using MQTT, password is optional
 api:
-  password: !secret api_password
+  encryption:
+    key: !secret api_encryption_key
 ota:
   - platform: esphome
     password: !secret ota_password
@@ -51,3 +52,13 @@ button:
     name: Nibegw Restart
   - platform: safe_mode
     name: Nibegw Safe Mode Boot
+# Virtual RMU so CI also builds the climate code path
+climate:
+  - platform: nibegw
+    name: s3
+    system: 3
+    sensor: current_temperature_s3
+sensor:
+  - platform: homeassistant
+    id: current_temperature_s3
+    entity_id: sensor.current_temperature_s3
